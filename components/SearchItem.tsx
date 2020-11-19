@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import cloudinary from '../helpers/cloudinary';
 
 interface SearchItemProps {
   id: string;
@@ -14,6 +15,33 @@ interface SearchItemProps {
 
 const SearchItem = (props: SearchItemProps) => {
   const url = `/campervans/${props.id}`;
+  const mobileImage = cloudinary(props.image_url, { w: 300, h: 200, c: 'fill', dpr: 1 });
+  const mobileImage2x = cloudinary(props.image_url, { w: 300, h: 200, c: 'fill', dpr: 2 });
+
+  const mobileImageWebp = cloudinary(
+    props.image_url,
+    { w: 300, h: 200, c: 'fill', dpr: 1 },
+    'webp',
+  );
+  const mobileImage2xWebp = cloudinary(
+    props.image_url,
+    { w: 300, h: 200, c: 'fill', dpr: 2 },
+    'webp',
+  );
+
+  const desktopImage = cloudinary(props.image_url, { w: 600, h: 400, c: 'fill', dpr: 1 });
+  const desktopImage2x = cloudinary(props.image_url, { w: 600, h: 400, c: 'fill', dpr: 2 });
+
+  const desktopImageWebp = cloudinary(
+    props.image_url,
+    { w: 600, h: 400, c: 'fill', dpr: 1 },
+    'webp',
+  );
+  const desktopImage2xWebp = cloudinary(
+    props.image_url,
+    { w: 600, h: 400, c: 'fill', dpr: 2 },
+    'webp',
+  );
 
   return (
     <article className="flex flex-wrap md:flex-no-wrap">
@@ -21,10 +49,20 @@ const SearchItem = (props: SearchItemProps) => {
         <Link href={url}>
           <a>
             <picture className="pb-4/6 block w-full relative overflow-hidden rounded">
+              <source srcSet={`${mobileImageWebp}, ${mobileImage2xWebp} 2x`} />
+              <source srcSet={`${mobileImage}, ${mobileImage2x} 2x`} />
+              <source
+                srcSet={`${desktopImageWebp}, ${desktopImage2xWebp} 2x`}
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcSet={`${desktopImage}, ${desktopImage2x} 2x`}
+                media="(min-width: 1200px)"
+              />
               <img
                 loading="lazy"
                 className="absolute h-full w-full object-cover"
-                src={props.image_url}
+                src={desktopImage}
                 alt={props.name}
               />
             </picture>
