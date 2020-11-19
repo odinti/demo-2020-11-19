@@ -8,10 +8,10 @@ export default function Home() {
   const pageSize = 8;
 
   return (
-    <main className="max-w-screen-xl mx-auto mt-8 text-black text-opacity-75 tracking-wide">
+    <main className="max-w-screen-xl mx-auto mt-8 mb-12 px-4 text-black text-opacity-75 tracking-wide">
       <h1 className="text-5xl font-black mb-1">Campervans</h1>
 
-      <form className="mb-16">
+      <form className="mb-8 md:mb-16">
         <label htmlFor="search" className="mb-2 block font-medium">
           Filter
         </label>
@@ -35,9 +35,9 @@ export default function Home() {
         </div>
       </form>
 
-      <ul className="flex flex-wrap">
+      <ul className="flex flex-wrap mb-8">
         {data.slice((page - 1) * pageSize, page * pageSize).map(item => (
-          <li key={item.id} className="w-1/2 mb-8">
+          <li key={item.id} className="w-full lg:w-1/2 mb-8">
             <SearchItem
               id={item.id}
               image_url={item.attributes.primary_image_url}
@@ -51,6 +51,15 @@ export default function Home() {
           </li>
         ))}
       </ul>
+
+      <div className="text-center">
+        <button
+          type="button"
+          className="text-md lg:text-xs text-white font-bold px-12 lg:px-8 py-4 lg:py-3 ml-4 rounded bg-outdoorsyGreen"
+        >
+          Load More
+        </button>
+      </div>
     </main>
   );
 }
