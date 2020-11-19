@@ -17,7 +17,7 @@ Using NextJS I was able to pre render both pages so search engines can index bet
 
 ## Live Preview
 
-It is available at 
+It is available at https://demo-2020-11-19-8af0uggmz.vercel.app/
 
 ## Running / Development
 
