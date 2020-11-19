@@ -37,7 +37,7 @@ export default function Home() {
 
       <ul className="flex flex-wrap mb-8">
         {data.slice((page - 1) * pageSize, page * pageSize).map(item => (
-          <li key={item.id} className="w-full lg:w-1/2 mb-8">
+          <li key={item.id} className="w-full lg:w-1/2 mb-2 md:mb-4 lg:mb-8">
             <SearchItem
               id={item.id}
               image_url={item.attributes.primary_image_url}
