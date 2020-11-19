@@ -43,7 +43,7 @@ const SearchItem = (props: SearchItemProps) => {
           </span>
 
           <span className="inline-block ml-4 flex items-center">
-            <span className="text-orange-400 text-xl">
+            <span className="text-orange-400 text-xl" title={`Rating: ${props.score.toFixed(1)}`}>
               {Array(5).fill('★').slice(0, props.score).join('')}
               {Array(5).fill('☆').slice(props.score, 5).join('')}
             </span>
