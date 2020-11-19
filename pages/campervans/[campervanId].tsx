@@ -1,8 +1,7 @@
 import React from 'react';
+import fetch from 'node-fetch';
 
-import { data, included } from '../../mockup/single.json';
-
-const CampervanId = () => {
+const CampervanId = ({ data, included }) => {
   // Due to time constraints image were not optimized
   // TODO: Optimize images using cloudinary function
 
@@ -60,7 +59,7 @@ const CampervanId = () => {
               <span className="text-md">•</span>
               <span> {data.attributes.location.city} </span>
             </div>
-            <h1 className="font-extrabold leading-5 text-3xl ">{data.attributes.name}</h1>
+            <h1 className="font-extrabold leading-5 text-3xl leading-8">{data.attributes.name}</h1>
           </header>
         </div>
 
@@ -86,5 +85,24 @@ const CampervanId = () => {
     </div>
   );
 };
+
+// This also gets called at build time
+export async function getServerSideProps({ params }) {
+  console.log(params);
+
+  const response = await fetch(' https://search.outdoorsy.co/rentals/' + params.campervanId);
+  if (response.status !== 200) {
+    console.log('Looks like there was a problem. Status Code: ' + response.status);
+    return;
+  }
+  const { data, included } = await response.json();
+
+  return {
+    props: {
+      data,
+      included,
+    },
+  };
+}
 
 export default CampervanId;
