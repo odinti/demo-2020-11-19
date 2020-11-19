@@ -3,6 +3,9 @@ import React from 'react';
 import { data, included } from '../../mockup/single.json';
 
 const CampervanId = () => {
+  // Due to time constraints image were not optimized
+  // TODO: Optimize images using cloudinary function
+
   const mainImageId = data.relationships.primary_image.data.id;
 
   const avatarImage = included.find(item => item.type === 'users');
