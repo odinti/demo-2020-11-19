@@ -1,5 +1,5 @@
 module.exports = {
-  purge: false,
+  purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
   theme: {
     extend: {
       maxWidth: {
